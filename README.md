@@ -55,6 +55,8 @@ The application must handle user authentication, car CRUD operations, and secure
 
 ---
 
+## 📂 Project Structure
+
 ufinet-autos/
 ├── backend/ -> Spring Boot project
 ├── frontend/ -> Angular project
@@ -63,6 +65,13 @@ ufinet-autos/
 ├── .gitignore
 └── README.md
 
+ufinet-autos/
+├── backend/
+├── frontend/
+├── database/
+├── postman/
+├── .gitignore
+└── README.md
 
 
-## 📂 Project Structure
+
