@@ -57,21 +57,12 @@ The application must handle user authentication, car CRUD operations, and secure
 
 ## 📂 Project Structure
 
-ufinet-autos/
-├── backend/ -> Spring Boot project
-├── frontend/ -> Angular project
-├── database/ -> SQL Server scripts
-├── postman/ -> Postman collection
-├── .gitignore
-└── README.md
-
-ufinet-autos/
-├── backend/
-├── frontend/
-├── database/
-├── postman/
-├── .gitignore
-└── README.md
+- **backend/** → Spring Boot project  
+- **frontend/** → Angular project  
+- **database/** → SQL Server scripts  
+- **postman/** → Postman collections  
+- **.gitignore** → Git ignore rules  
+- **README.md** → Project documentation  
 
 
 
