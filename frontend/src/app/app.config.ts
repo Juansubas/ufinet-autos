@@ -1,8 +1,12 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { ApplicationConfig } from '@angular/core';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { authInterceptor } from './auth/auth.interceptor';
 
-import { routes } from './app.routes';
-
+// Este archivo es la configuración central de tu aplicación.
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes)]
+  providers: [
+    // Aquí registramos el HttpClient y le decimos que use nuestro
+    // interceptor para añadir automáticamente el token a las peticiones.
+    provideHttpClient(withInterceptors([authInterceptor]))
+  ]
 };
