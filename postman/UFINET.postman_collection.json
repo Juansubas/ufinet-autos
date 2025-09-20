@@ -78,7 +78,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiZXhwIjoxNzU3NDQzNzEwNDg2LCJ1c2VySWQiOjEsImlhdCI6MTc1NzM1NzMxMDQ4Nn0.HuNuGA8-moxQkMnhbJ4M8Zz75yi15pPJ0b9XtRVx4sI",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJQZXBlIiwiZXhwIjoxNzU3NDUyNDMzMDUwLCJ1c2VySWQiOjgsImlhdCI6MTc1NzM2NjAzMzA1MH0.nGt3CO8dHVtp607ceozGqV7xaE5ySf0SoIkAoPMQi5o",
 							"type": "string"
 						}
 					]
@@ -109,6 +109,45 @@
 			"response": []
 		},
 		{
+			"name": "PUT AUTO",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiZXhwIjoxNzU3NDQzMTA4NjMxLCJ1c2VySWQiOjEsImlhdCI6MTc1NzM1NjcwODYzMX0.1c17V_qR1uXgZu9BNLyJU0OQAD3dtVg3Uaj3Za-Q_mA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"brand\": \"Mazda\",\r\n  \"model\": \"3\",\r\n  \"year\": 2006,\r\n  \"plate\": \"XYZ789\",\r\n  \"color\": \"Negro\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET AUTO",
 			"request": {
 				"auth": {
@@ -132,6 +171,66 @@
 					"port": "8080",
 					"path": [
 						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET AUTO BYID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiZXhwIjoxNzU3NDQzMTA4NjMxLCJ1c2VySWQiOjEsImlhdCI6MTc1NzM1NjcwODYzMX0.1c17V_qR1uXgZu9BNLyJU0OQAD3dtVg3Uaj3Za-Q_mA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET AUTO BYID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJzdWIiOiJqdWFuIiwiZXhwIjoxNzU3NDQzMTA4NjMxLCJ1c2VySWQiOjEsImlhdCI6MTc1NzM1NjcwODYzMX0.1c17V_qR1uXgZu9BNLyJU0OQAD3dtVg3Uaj3Za",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cars/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cars",
+						"1"
 					]
 				}
 			},
