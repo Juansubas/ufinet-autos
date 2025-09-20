@@ -29,14 +29,20 @@ export class Register {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
+      this.errorMessage = null; // Limpia errores anteriores
+      this.successMessage = null;
       this.authService.register(this.registerForm.value).subscribe({
         next: () => {
           this.successMessage = '¡Registro exitoso! Serás redirigido al login.';
-          this.errorMessage = null;
           setTimeout(() => this.router.navigate(['/login']), 2500);
         },
+        // --- AQUÍ ESTÁ LA CORRECCIÓN ---
         error: (err) => {
-          this.errorMessage = 'El usuario o email ya existen. Intenta con otros.';
+          if (err.error && err.error.message) {
+            this.errorMessage = err.error.message;
+          } else {
+            this.errorMessage = 'No se pudo completar el registro. Intenta con otros datos.';
+          }
           this.successMessage = null;
         }
       });

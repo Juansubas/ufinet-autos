@@ -17,9 +17,12 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class CarList implements OnInit {
   cars: Car[] = [];
   carForm: FormGroup;
-  filterForm: FormGroup; // <-- Formulario para filtros
+  filterForm: FormGroup;
   editingCar: Car | null = null;
   isLoading = false;
+  // --- AÑADE ESTAS PROPIEDADES PARA LOS MENSAJES ---
+  successMessage: string | null = null;
+  errorMessage: string | null = null;
 
   constructor(private carService: CarService, private fb: FormBuilder) {
     this.carForm = this.fb.group({
@@ -28,7 +31,7 @@ export class CarList implements OnInit {
       year: ['', [Validators.required, Validators.min(1900), Validators.max(2030)]],
       plate: ['', Validators.required],
       color: ['', Validators.required],
-      photo: [null] // <-- Campo de foto simulado
+      photo: [null]
     });
 
     this.filterForm = this.fb.group({
@@ -53,6 +56,8 @@ export class CarList implements OnInit {
       error: (err) => {
         console.error('Error al cargar los autos', err);
         this.isLoading = false;
+        // Muestra un error si falla la carga de autos
+        this.errorMessage = 'No se pudieron cargar los autos. Intenta de nuevo más tarde.';
       }
     });
   }
@@ -65,18 +70,29 @@ export class CarList implements OnInit {
     if (this.carForm.invalid) return;
 
     this.isLoading = true;
+    // Limpia los mensajes antes de cada operación
+    this.errorMessage = null;
+    this.successMessage = null;
+
     const operation = this.editingCar
       ? this.carService.updateCar(this.editingCar.id!, this.carForm.value)
       : this.carService.addCar(this.carForm.value);
 
     operation.subscribe({
       next: () => {
+        this.successMessage = `Auto ${this.editingCar ? 'actualizado' : 'creado'} con éxito.`;
         this.filterForm.reset({ search: '', brand: '', year: '' });
         this.loadCars();
         this.cancelEdit();
         this.isLoading = false;
       },
+      // --- ESTE BLOQUE ES LA MEJORA PRINCIPAL ---
       error: (err) => {
+        if (err.error && err.error.message) {
+          this.errorMessage = err.error.message; // Muestra el mensaje del backend
+        } else {
+          this.errorMessage = 'Ocurrió un error en la operación.';
+        }
         console.error('Error en la operación', err);
         this.isLoading = false;
       }
@@ -84,6 +100,8 @@ export class CarList implements OnInit {
   }
 
   editCar(car: Car): void {
+    this.successMessage = null; // Limpia mensajes al empezar a editar
+    this.errorMessage = null;
     this.editingCar = car;
     this.carForm.patchValue(car);
   }
@@ -98,10 +116,16 @@ export class CarList implements OnInit {
       this.isLoading = true;
       this.carService.deleteCar(carId).subscribe({
         next: () => {
+          this.successMessage = 'Auto eliminado con éxito.';
           this.loadCars();
           this.isLoading = false;
         },
         error: (err) => {
+          if (err.error && err.error.message) {
+            this.errorMessage = err.error.message;
+          } else {
+            this.errorMessage = 'No se pudo eliminar el auto.';
+          }
           console.error('Error al eliminar el auto', err);
           this.isLoading = false;
         }

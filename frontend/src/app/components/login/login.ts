@@ -27,12 +27,20 @@ export class Login {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.errorMessage = null; // Limpia errores anteriores
       this.authService.login(this.loginForm.value).subscribe({
         next: () => {
           this.router.navigate(['/cars']);
         },
+        // --- AQUÍ ESTÁ LA CORRECCIÓN ---
         error: (err) => {
-          this.errorMessage = 'Credenciales incorrectas. Inténtalo de nuevo.';
+          // Revisa si el backend envió un mensaje específico
+          if (err.error && err.error.message) {
+            this.errorMessage = err.error.message;
+          } else {
+            // Si no, muestra un mensaje genérico
+            this.errorMessage = 'Credenciales incorrectas o error en el servidor.';
+          }
         }
       });
     }
