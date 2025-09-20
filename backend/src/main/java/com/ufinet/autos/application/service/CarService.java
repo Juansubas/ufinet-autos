@@ -20,6 +20,11 @@ public class CarService implements CarUseCase {
     }
 
     @Override
+    public List<Car> listByUserWithFilters(Long userId, String search, String brand, Integer year) {
+        return carRepositoryPort.findByCriteria(userId, search, brand, year);
+    }
+
+    @Override
     public List<Car> listByUser(Long userId) {
         return carRepositoryPort.findByUserId(userId);
     }

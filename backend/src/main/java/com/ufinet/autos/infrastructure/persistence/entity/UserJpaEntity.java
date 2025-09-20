@@ -1,4 +1,4 @@
-package com.ufinet.autos.infrastructure.persistence;
+package com.ufinet.autos.infrastructure.persistence.entity;
 
 import com.ufinet.autos.domain.model.User;
 import jakarta.persistence.*;

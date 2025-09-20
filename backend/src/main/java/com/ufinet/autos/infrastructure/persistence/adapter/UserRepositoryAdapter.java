@@ -1,7 +1,9 @@
-package com.ufinet.autos.infrastructure.persistence;
+package com.ufinet.autos.infrastructure.persistence.adapter;
 
 import com.ufinet.autos.application.port.out.UserRepositoryPort;
 import com.ufinet.autos.domain.model.User;
+import com.ufinet.autos.infrastructure.persistence.entity.UserJpaEntity;
+import com.ufinet.autos.infrastructure.persistence.repository.SpringDataUserRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;

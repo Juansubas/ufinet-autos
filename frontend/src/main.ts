@@ -1,6 +1,8 @@
+// src/main.ts
+import 'zone.js'; // 👈 necesario para Angular
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { App } from './app/app'; // <-- CORREGIDO
 
-bootstrapApplication(AppComponent, appConfig)
+bootstrapApplication(App, appConfig)
   .catch((err) => console.error(err));

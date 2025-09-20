@@ -31,9 +31,15 @@ public class CarController {
     }
 
     @GetMapping
-    public ResponseEntity<?> list() {
+    public ResponseEntity<List<Car>> listCars(
+            @RequestParam(required = false) String search,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) Integer year
+    ) {
         Long userId = getCurrentUserId();
-        List<Car> cars = carUseCase.listByUser(userId);
+        //List<Car> cars = carUseCase.listByUser(userId);
+        List<Car> cars = carUseCase.listByUserWithFilters(userId, search, brand, year);
+
         return ResponseEntity.ok(cars);
     }
 

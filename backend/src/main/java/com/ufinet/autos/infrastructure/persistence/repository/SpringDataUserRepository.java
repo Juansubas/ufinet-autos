@@ -1,5 +1,6 @@
-package com.ufinet.autos.infrastructure.persistence;
+package com.ufinet.autos.infrastructure.persistence.repository;
 
+import com.ufinet.autos.infrastructure.persistence.entity.UserJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

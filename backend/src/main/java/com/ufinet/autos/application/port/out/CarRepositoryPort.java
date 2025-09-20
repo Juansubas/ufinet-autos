@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CarRepositoryPort {
+    List<Car> findByCriteria(Long userId, String search, String brand, Integer year);
     List<Car> findByUserId(Long userId);
     Optional<Car> findById(Long id);
     Car save(Car car);
